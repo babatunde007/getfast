@@ -7,10 +7,17 @@ require('getclass.php');
 
 $obj=new Getfast;
 
+if(!$_POST==''){
+
 $_SESSION['loc']=$_POST['local'];
 
 $_SESSION['cate']=$_POST['cat'];
 
+}else{
+
+header('location:index.php');
+
+}
 
 
 
@@ -77,7 +84,7 @@ $_SESSION['cate']=$_POST['cat'];
         <div class="col-md-3 col-sm-3 col-xs-12"></div>
 
          <div class="col-md-6 col-sm-6 col-xs-12" style="padding:40px 20px; background-color:white; border:5px solid rgb(31,185,197); height:800px; border-radius:5%">
-          <p id="showw" style="color:red; font-size:25px"></p>
+          <p id="show" style="color:red; font-size:25px"></p>
           <?php
 
         
@@ -103,38 +110,38 @@ $_SESSION['cate']=$_POST['cat'];
 
           <h3 align="center">Let get some details to help you search properly</h3>
           <br>
-         <form action="searchpage.php" method="post">
+         <form action="searchpage.php" method="post" id="requestform">
 
                <div class="form-group">
                   <label><b style="color:black">Name<b></label>
 
-                  <input type="text" class="form-control" required="required" name="custname">
+                  <input type="text" class="form-control" required="required" name="custname" id="name">
                  
 
                </div>
                <div class="form-group">
                   <label><b style="color:black">Number<b></label>
 
-                  <input type="text" class="form-control" required="required" name="custnum">
+                  <input type="text" class="form-control" required="required" name="custnum" id="num">
                  
 
                </div>
                <div><h5 style="color:rgb(31,185,197)">Choose  the occasion type</h5></div>
                <div class="form-group">
 
-                  <input type="radio" name="occasion" value="Wedding">
+                  <input type="radio" name="occasion" value="Wedding" class="occ">
                   <b>Your Wedding</b>
 
                </div>
                <div class="form-group">
 
-                  <input type="radio"  name="occasion" value="Birthday">
+                  <input type="radio"  name="occasion" value="Birthday" class="occ">
                   <b>Birthday</b>
 
               </div>
               <div class="form-group">
 
-                  <input type="radio"  name="occasion" value="Others">
+                  <input type="radio"  name="occasion" value="Others" class="occ">
                   <b>Other occasions</b>
 
                </div>
@@ -143,13 +150,13 @@ $_SESSION['cate']=$_POST['cat'];
                 <div><h5 style="color:rgb(31,185,197)">Choose Where</h5></div>
             
 
-                  <input type="radio" name="where" value="studio/shalon">
+                  <input type="radio" name="where" value="studio/shalon" class="where">
                   <b>Studio/shaloon</b>
 
                </div>
                <div class="form-group">
 
-                  <input type="radio"  name="where" value="my place">
+                  <input type="radio"  name="where" value="my place" class="where">
                   <b>My place</b>
 
                </div>
@@ -158,25 +165,25 @@ $_SESSION['cate']=$_POST['cat'];
                 <div><h5 style="color:rgb(31,185,197)">Choose When</h5></div>
             
 
-                  <input type="radio" name="time" value="today">
+                  <input type="radio" name="time" value="today" class="time">
                   <b>Today</b>
 
                </div>
                <div class="form-group">
 
-                  <input type="radio"  name="time" value="this week">
+                  <input type="radio"  name="time" value="this week" class="time">
                   <b>This week</b>
 
                </div>
                <div class="form-group">
 
-                  <input type="radio"  name="time" value="weekend">
+                  <input type="radio"  name="time" value="weekend" class="time">
                   <b>Weekend</b>
 
                </div>
                <div class="form-group">
 
-                <input type="hidden"  name="state" value="<?php echo $_POST['state']?>">
+                <input type="hidden"  name="state" value="<?php echo $_POST['state']?>" id="state">
                   
 
                </div>
@@ -184,7 +191,7 @@ $_SESSION['cate']=$_POST['cat'];
                <div>
     
 
-                  <button  class="btn btn-success btn-block" >Search</button>
+                  <button  class="btn btn-success btn-block" id="search">Search</button>
                  
 
                </div>
@@ -206,26 +213,59 @@ $_SESSION['cate']=$_POST['cat'];
 	</div>
 	
 
-           
-
-         
-
-          
-          
-      
+  <script>
   
-           
+  $(document).ready(function(){
 
-          
+$('#search').click(function(){
 
+ var a=$('#name').val();
+ var n=$('#num').val();
+ var w=$('.where').val();
+ var t=$('.time').val();
+ var o=$('.occ').val();
+
+
+
+
+  if(aa=='' || n=='' || w==''|| t==''||o==''){
+
+  
+   $('#show').html('<b>check the ommited field</b>');
+
+ }
+  else if(!a.trim() || !n.trim() || !w.trim() || !t.trim() || !o.trim()){
+
+   $('#show').html('<b>Fill the field properly</b>');
+ 
+
+ }else{
+
+   $('#requestform').submit();
+ }
+
+ 
+
+
+
+
+
+
+});
+
+
+
+});
+
+  
    
-
-
-                                   
+  
+  
+  
+  </script>         
+                                
   
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
 </body>
 </html>

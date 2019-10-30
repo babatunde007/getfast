@@ -6,7 +6,7 @@ $obj=new Getfast;
 
 $obj->logout();
 
-header("location:getfast.php");
+header("location:index.php");
 
 
 

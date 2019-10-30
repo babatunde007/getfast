@@ -77,7 +77,7 @@ $data=$obj->details();
                   <div id='loc'>
   
 
-                      <select class="form-control">
+                      <select class="form-control" name="local">
                         
                       <option>Area</option>
 
@@ -104,7 +104,7 @@ $data=$obj->details();
                     </select>
 
                   </div>
-                  <div class="col-md-3 col-sm-3 col-xs-3" style="margin-top:38px"> <button class="btn btn-info btn-block" >Search</button></div>
+                  <div class="col-md-3 col-sm-3 col-xs-3" style="margin-top:38px"> <button class="btn btn-info btn-block" id="search" >Search</button></div>
 
                 
                   
@@ -201,7 +201,7 @@ $data=$obj->details();
     <?php
 
 
-
+   if(!$data ==''){
     
 
     for($i=0;$i<=2;$i++){
@@ -231,7 +231,7 @@ $data=$obj->details();
 
      }
 
-
+   }
 ?>
 </div>
 <script>
@@ -267,15 +267,18 @@ $("#search").click(function(){
 
   var loc=$('#loc').val();
 
-if(city=='' || loc==''){
+  var cat=$('#cat').val();
 
-  $('search').attr();
+if(city!='' && loc!='' && cat!=''){
+
+  
 
 }else{
 
-$("#city").submit();
 
-$("#loc").submit();
+  $("#city").submit();
+
+  $("#loc").submit();
 
 }
 
